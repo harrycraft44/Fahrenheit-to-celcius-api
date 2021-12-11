@@ -12,7 +12,9 @@ function ToFahrenheit(c){
 function ToCelcius(f){
     return (f - 32) * 5/9
 }
-
+function CelciusToK(f){
+    return f + 273.15 
+}
 // To fahrenheit
 app.get('/tf', (req, res) => {
     if (req.query.r == 'true') {res.write(Math.round(ToFahrenheit(req.query.c)).toString())}
@@ -21,7 +23,13 @@ app.get('/tf', (req, res) => {
     }
     res.end()
 });
-
+app.get('/ctk', (req, res) => {
+    if (req.query.r == 'true') {res.write(Math.round(CelciusToK(req.query.c)).toString())}
+    else{
+        res.write(CelciusToK(req.query.c).toString()) 
+    }
+    res.end()
+});
 // To celcius
 app.get('/tc', (req, res) => {
     if (req.query.r == 'true') {
