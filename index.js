@@ -13,10 +13,13 @@ function ToCelcius(f){
     return (f - 32) * 5/9
 }
 function CelciusToK(f){
-    return f + 273.15 
+    return parseFloat(f) + 273.15 
 }
 function FahrenheitToK(f){
-    return (f - 32) * 5/9 + 273.15
+    return parseFloat((f - 32) * 5/9) + 273.15
+}
+function KToFahrenheit(f){
+    return parseFloat(f) - 273.15 
 }
 // To fahrenheit
 app.get('/tf', (req, res) => {
@@ -30,6 +33,13 @@ app.get('/ctk', (req, res) => {
     if (req.query.r == 'true') {res.write(Math.round(CelciusToK(req.query.c)).toString())}
     else{
         res.write(CelciusToK(req.query.c).toString()) 
+    }
+    res.end()
+});
+app.get('/ktf', (req, res) => {
+    if (req.query.r == 'true') {res.write(Math.round(KToFahrenheit(req.query.k)).toString())}
+    else{
+        res.write(KToFahrenheit(req.query.k).toString()) 
     }
     res.end()
 });
